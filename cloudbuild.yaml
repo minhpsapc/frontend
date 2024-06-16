@@ -29,6 +29,7 @@ steps:
       - |
         npm cache clean --force
         npm install
+        ng update --all --force
         npm run build -- --prod
 
   # Step 3: Build Docker image
