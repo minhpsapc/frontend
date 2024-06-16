@@ -27,6 +27,7 @@ steps:
     args:
       - '-c'
       - |
+        npm run clean
         npm install
         npm run build -- --prod
 
