@@ -17,7 +17,7 @@ spec:
       - name: frontend
         image: africa-south1-docker.pkg.dev/doantotnghiep-426507/doantotnghiep-repo/frontend:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 4200
 ---
 apiVersion: v1
 kind: Service
@@ -29,6 +29,6 @@ spec:
     app: frontend
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8080
+      port: 4200
+      targetPort: 4200
   type: ClusterIP
