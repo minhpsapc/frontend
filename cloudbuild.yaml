@@ -19,6 +19,7 @@ steps:
     args:
       - '-c'
       - |
+        pwd
         npm install -g npm@8.1.2
 
   # Step 2: Install Angular CLI (if not already cached)
@@ -46,6 +47,8 @@ steps:
       - 'build'
       - '-t'
       - 'africa-south1-docker.pkg.dev/doantotnghiep-426507/doantotnghiep-repo/frontend:latest'
+      - '-f'
+      - 'Dockerfile'
       - '.'
 
   # Step 5: Push Docker image to Google Container Registry
