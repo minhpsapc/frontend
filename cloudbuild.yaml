@@ -13,15 +13,23 @@
 # limitations under the License.
 # [START cloudbuild_maven]
 steps:
-  # Step 1: Install Node.js and npm
-  - name: 'node:14.17.6'  # Replace with your preferred Node.js version
+  # Step 1: Install Node.js
+  - name: 'node:14.17.6'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        npm install -g npm@8.1.2
+
+  # Step 2: Install Angular CLI (if not already cached)
+  - name: 'node:14.17.6'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
         npm install -g @angular/cli
 
-  # Step 2: Install dependencies and build Angular project
+  # Step 3: Install dependencies and build Angular project
   - name: 'node:14.17.6'  # Ensure Node.js version matches previous step
     entrypoint: 'bash'
     args:
@@ -32,7 +40,7 @@ steps:
         ng update --all --force
         npm run build -- --prod
 
-  # Step 3: Build Docker image
+  # Step 4: Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
@@ -40,13 +48,13 @@ steps:
       - 'africa-south1-docker.pkg.dev/doantotnghiep-426507/doantotnghiep-repo/frontend:latest'
       - '.'
 
-  # Step 4: Push Docker image to Google Container Registry
+  # Step 5: Push Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
       - 'africa-south1-docker.pkg.dev/doantotnghiep-426507/doantotnghiep-repo/frontend:latest'
 
-  # Step 5: Deploy to Kubernetes
+  # Step 6: Deploy to Kubernetes
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
       - 'apply'
