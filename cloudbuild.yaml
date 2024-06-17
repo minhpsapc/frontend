@@ -14,32 +14,32 @@
 # [START cloudbuild_maven]
 steps:
   # Step 1: Install Node.js
-  - name: 'node:14.17.6'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        pwd
-        npm install -g npm@8.1.2
-
-  # Step 2: Install Angular CLI (if not already cached)
-  - name: 'node:14.17.6'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        npm install -g @angular/cli
-
-  # Step 3: Install dependencies and build Angular project
-  - name: 'node:14.17.6'  # Ensure Node.js version matches previous step
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        npm cache clean --force
-        npm install
-        ng update --all --force
-        npm run build -- --prod
+#  - name: 'node:14.17.6'
+#    entrypoint: 'bash'
+#    args:
+#      - '-c'
+#      - |
+#        pwd
+#        npm install -g npm@8.1.2
+#
+#  # Step 2: Install Angular CLI (if not already cached)
+#  - name: 'node:14.17.6'
+#    entrypoint: 'bash'
+#    args:
+#      - '-c'
+#      - |
+#        npm install -g @angular/cli
+#
+#  # Step 3: Install dependencies and build Angular project
+#  - name: 'node:14.17.6'  # Ensure Node.js version matches previous step
+#    entrypoint: 'bash'
+#    args:
+#      - '-c'
+#      - |
+#        npm cache clean --force
+#        npm install
+#        ng update --all --force
+#        npm run build -- --prod
 
   # Step 4: Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
