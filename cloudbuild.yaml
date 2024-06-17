@@ -68,7 +68,7 @@ steps:
       - 'CLOUDSDK_CONTAINER_CLUSTER=doantotnghiep'  # Replace with your GKE cluster name
 
 images:
-  - 'gcr.io/$PROJECT_ID/my-angular-app:$COMMIT_SHA'
+  - 'africa-south1-docker.pkg.dev/doantotnghiep-426507/doantotnghiep-repo/frontend:latest'
 # [END cloudbuild_maven]
 options:
   logging: CLOUD_LOGGING_ONLY
